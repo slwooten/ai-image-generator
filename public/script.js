@@ -24,12 +24,9 @@ const createImages = (images) => {
 const handleFormSubmit = async (e) => {
   e.preventDefault();
 
-  try {
     const prompt = userPrompt.value;
     const size = userSize.value;
     const quantity = parseInt(userQuantity.value);
-    // console.log(prompt, size, quantity);
-
     const url = "/openai/go";
     const options = {
       method: "POST",
@@ -43,15 +40,21 @@ const handleFormSubmit = async (e) => {
         quantity: quantity
       }),
     };
-    const res = await fetch(url, options);
 
-    const results = await res.json();
+  if (prompt && size && quantity) {
+    try {
+      const res = await fetch(url, options);
 
-    createImages(results.data);
+      const results = await res.json();
 
-    console.log(results);
-  } catch (error) {
-    console.log(error);
+      createImages(results.data);
+
+      console.log(results);
+    }  catch (error) {
+      console.log(error);
+    }
+  } else {
+    window.alert('Please enter a prompt.');
   }
 };
 
