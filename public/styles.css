@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -22,6 +22,24 @@
   margin: 1rem;
   text-align: center;
   padding: 1rem;
+}
+
+.form-card input {
+  width: 500px;
+}
+
+.results-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 10px/10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 2rem;
+}
+
+.generated-img {
+  margin: 1rem;
 }
 
 .hidden {

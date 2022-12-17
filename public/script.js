@@ -15,6 +15,7 @@ const createImages = (images) => {
     imageEl.setAttribute('class', 'generated-img');
 
     resultsCard.removeAttribute('class', 'hidden');
+    resultsCard.setAttribute('class', 'results-card');
     resultsCard.append(imageEl);
   });
 };
