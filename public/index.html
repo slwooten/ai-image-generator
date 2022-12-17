@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,29 @@
   <link rel="stylesheet" href="styles.css">
   <title>AI Image Generator</title>
 </head>
+
 <body>
   <div class="app">
     <div class="form-card">
       <h1>Welcome to my AI Image Generator</h1>
       <h2>Enter a prompt below, click generate, then wait for your image to be created.</h2>
       <input id="prompt" type="text" placeholder="Enter your prompt">
+      <div class="sizeSelect">
+        <label for="sizes">Image Size:</label>
+        <select id='size' name="sizes">
+          <option value="256x256">Small</option>
+          <option value="512x512">Medium</option>
+          <option value="1024x1024">Large</option>
+        </select>
+      </div>
+      <div class="quantitySelect">
+        <label for="quantity">Number of Images</label>
+        <select id='quantity' name="quantity">
+          <option value=1>1</option>
+          <option value=2>2</option>
+          <option value=3>3</option>
+        </select>
+      </div>
       <button id="btn">Generate</button>
     </div>
     <div class="results-card hidden"></div>
@@ -20,4 +38,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
