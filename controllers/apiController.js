@@ -7,8 +7,9 @@ const openai = new OpenAIApi(configuration);
 
 const generateImage = async (req, res) => {
 
-  const { prompt, size, quantity } = req.body;
+  const { prompt, size, quantity, accessCode } = req.body;
 
+if (accessCode === process.env.ACCESS_CODE) {
   try {
     const response = await openai.createImage({
       prompt: prompt,
@@ -34,7 +35,13 @@ const generateImage = async (req, res) => {
       message: 'The image could not be loaded.',
       errorMessage: error.message
     });
-  }
+  };
+} else {
+  res.status(401).json({
+    success: false,
+    message: 'Incorrect Access Code'
+  });
+};
 };
 
 module.exports = { generateImage };

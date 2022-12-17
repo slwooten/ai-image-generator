@@ -1,11 +1,24 @@
-console.log('hello there');
-
 const userPrompt = document.getElementById('prompt');
 const generateBtn = document.getElementById('btn');
 const userSize = document.getElementById('size');
 const userQuantity = document.getElementById('quantity');
+const userAccessCode = document.getElementById('access-code');
 const resultsCard = document.getElementById('results-card');
+const showBtn = document.getElementById('show');
 
+
+/// SHOW ACCESS CODE TOGGLE ///
+let shown = false;
+const codeToggle = () => {
+  shown = !shown;
+  if (shown) {
+    userAccessCode.setAttribute('type', 'text');
+    showBtn.textContent = 'Hide';
+  } else {
+    userAccessCode.setAttribute('type', 'password');
+    showBtn.textContent = 'Show';
+  };
+};
 
 /// ADD IMAGE ELEMENTS TO PAGE ///
 const createImages = (images) => {
@@ -27,6 +40,7 @@ const handleFormSubmit = async (e) => {
     const prompt = userPrompt.value;
     const size = userSize.value;
     const quantity = parseInt(userQuantity.value);
+    const accessCode = userAccessCode.value;
     const url = "/openai/go";
     const options = {
       method: "POST",
@@ -37,11 +51,12 @@ const handleFormSubmit = async (e) => {
       body: JSON.stringify({
         prompt: prompt,
         size: size,
-        quantity: quantity
+        quantity: quantity,
+        accessCode: accessCode
       }),
     };
 
-  if (prompt && size && quantity) {
+  if (prompt && size && quantity && accessCode) {
     try {
       const res = await fetch(url, options);
 
@@ -58,4 +73,5 @@ const handleFormSubmit = async (e) => {
   }
 };
 
+showBtn.addEventListener('click', codeToggle);
 generateBtn.addEventListener('click', handleFormSubmit);
