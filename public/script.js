@@ -11,7 +11,7 @@ const handleFormSubmit = async (e) => {
   try {
     const prompt = userPrompt.value;
     const size = userSize.value;
-    const quantity = userQuantity.value;
+    const quantity = parseInt(userQuantity.value);
     console.log(prompt, size, quantity);
 
     const url = "/openai/go";
