@@ -4,7 +4,22 @@ const userPrompt = document.getElementById('prompt');
 const generateBtn = document.getElementById('btn');
 const userSize = document.getElementById('size');
 const userQuantity = document.getElementById('quantity');
+const resultsCard = document.getElementById('results-card');
 
+
+/// ADD IMAGE ELEMENTS TO PAGE ///
+const createImages = (images) => {
+  images.map((image) => {
+    const imageEl = document.createElement('img');
+    imageEl.setAttribute('src', image.url);
+    imageEl.setAttribute('class', 'generated-img');
+
+    resultsCard.removeAttribute('class', 'hidden');
+    resultsCard.append(imageEl);
+  });
+};
+
+/// HANDLE USERS SEARCH ///
 const handleFormSubmit = async (e) => {
   e.preventDefault();
 
@@ -12,7 +27,7 @@ const handleFormSubmit = async (e) => {
     const prompt = userPrompt.value;
     const size = userSize.value;
     const quantity = parseInt(userQuantity.value);
-    console.log(prompt, size, quantity);
+    // console.log(prompt, size, quantity);
 
     const url = "/openai/go";
     const options = {
@@ -30,6 +45,8 @@ const handleFormSubmit = async (e) => {
     const res = await fetch(url, options);
 
     const results = await res.json();
+
+    createImages(results.data);
 
     console.log(results);
   } catch (error) {
