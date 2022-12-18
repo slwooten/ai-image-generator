@@ -16,3 +16,5 @@
 OpenAI's API is a paid service. For this reason, you will need to contact me via email if you would like to use the application. I will provide you with an access code.
 
 Email: slwooten14@gmail.com
+
+[Deployed Link >](https://ai-img-generator.herokuapp.com/)
