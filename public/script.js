@@ -33,6 +33,11 @@ const createImages = (images) => {
   });
 };
 
+/// SHOWING THE ACCESS ERROR ///
+const showAccessError = () => {
+  window.alert('Sorry, the access code you entered is incorrect. Try again.');
+};
+
 /// HANDLE USERS SEARCH ///
 const handleFormSubmit = async (e) => {
   e.preventDefault();
@@ -41,6 +46,7 @@ const handleFormSubmit = async (e) => {
     const size = userSize.value;
     const quantity = parseInt(userQuantity.value);
     const accessCode = userAccessCode.value;
+    console.log(accessCode);
     const url = "/openai/go";
     const options = {
       method: "POST",
@@ -61,6 +67,10 @@ const handleFormSubmit = async (e) => {
       const res = await fetch(url, options);
 
       const results = await res.json();
+
+      if (results.success === false) {
+        showAccessError();
+      }
 
       createImages(results.data);
 
