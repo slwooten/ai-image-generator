@@ -46,7 +46,6 @@ const handleFormSubmit = async (e) => {
     const size = userSize.value;
     const quantity = parseInt(userQuantity.value);
     const accessCode = userAccessCode.value;
-    console.log(accessCode);
     const url = "/openai/go";
     const options = {
       method: "POST",
@@ -74,7 +73,6 @@ const handleFormSubmit = async (e) => {
 
       createImages(results.data);
 
-      console.log(results);
     }  catch (error) {
       console.log(error);
     }

@@ -37,7 +37,6 @@ if (accessCode === process.env.ACCESS_CODE) {
     });
   };
 } else {
-  console.log('fell to this error');
   res.status(400).json({
     success: false,
     message: 'Incorrect Access Code'
