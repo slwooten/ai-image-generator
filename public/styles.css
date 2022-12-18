@@ -8,6 +8,14 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#show:hover {
+  cursor: pointer;
+}
+
+#btn:hover {
+  cursor: pointer;
+}
+
 .code-container {
   display: flex;
   justify-content: space-evenly;
