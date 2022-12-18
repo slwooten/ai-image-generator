@@ -55,6 +55,11 @@ const showAccessError = () => {
 const handleFormSubmit = async (e) => {
   e.preventDefault();
 
+  resultsCard.innerHTML = '';
+  resultsCard.removeAttribute('class', 'results-card');
+  resultsCard.setAttribute('class', 'hidden');
+
+
   showLoader();
 
   const prompt = userPrompt.value;
