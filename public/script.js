@@ -5,6 +5,7 @@ const userQuantity = document.getElementById('quantity');
 const userAccessCode = document.getElementById('access-code');
 const resultsCard = document.getElementById('results-card');
 const showBtn = document.getElementById('show');
+const loader = document.getElementById('loader');
 
 
 /// SHOW ACCESS CODE TOGGLE ///
@@ -18,6 +19,18 @@ const codeToggle = () => {
     userAccessCode.setAttribute('type', 'password');
     showBtn.textContent = 'Show';
   };
+};
+
+/// SHOW LOADER ///
+const showLoader = () => {
+  loader.removeAttribute('class', 'hidden');
+  loader.setAttribute('class', 'loader');
+};
+
+/// HIDE LOADER ///
+const hideLoader = () => {
+  loader.removeAttribute('class', 'loader');
+  loader.setAttribute('class', 'hidden');
 };
 
 /// ADD IMAGE ELEMENTS TO PAGE ///
@@ -42,24 +55,26 @@ const showAccessError = () => {
 const handleFormSubmit = async (e) => {
   e.preventDefault();
 
-    const prompt = userPrompt.value;
-    const size = userSize.value;
-    const quantity = parseInt(userQuantity.value);
-    const accessCode = userAccessCode.value;
-    const url = "/openai/go";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        size: size,
-        quantity: quantity,
-        accessCode: accessCode
-      }),
-    };
+  showLoader();
+
+  const prompt = userPrompt.value;
+  const size = userSize.value;
+  const quantity = parseInt(userQuantity.value);
+  const accessCode = userAccessCode.value;
+  const url = "/openai/go";
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+    body: JSON.stringify({
+      prompt: prompt,
+      size: size,
+      quantity: quantity,
+      accessCode: accessCode
+    }),
+  };
 
   if (prompt && size && quantity && accessCode) {
     try {
@@ -71,9 +86,10 @@ const handleFormSubmit = async (e) => {
         showAccessError();
       }
 
+      hideLoader();
       createImages(results.data);
 
-    }  catch (error) {
+    } catch (error) {
       console.log(error);
     }
   } else {
